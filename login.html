@@ -11,13 +11,31 @@
     <title>Login</title>
 </head>
 
+<style>
+    .btn {
+        font-weight: bold;
+        padding: 0.5rem 0.5rem;
+    }
+
+    .btn-blue {
+        background-color: #181d2baf;
+        color: #ffffff;
+    }
+
+    .btn-blue:hover {
+        background-color: #2779bd59;
+    }
+</style>
+
 <body class="bg-[#0F172A]">
     <form method="GET" class="grid grid-cols-2 h-screen gap-4 place-content-center">
         <div
             class="bg-[#ffffff34] absolute text-[#fff] rounded top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-[80px]">
             <div class="flex items-center justify-between">
                 <h1 class="text-zinc-400">Login</h1>
-                <i class="fa-solid fa-lightbulb"></i>
+                <div class="bg-black">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
             </div>
             <br>
             <div class="border-none outline-none">
@@ -36,17 +54,21 @@
             </div>
             <br>
             <div class="flex items-center justify-end">
-                <div class="border-2 rounded-md">
-                    <a href="#">
-                        Enviar
-                    </a>
+                <div class="rounded-lg">
+                    <button class="btn btn-blue">
+                        <a href="#" class="m-3">
+                            Enviar
+                        </a>
+                    </button>
                 </div>
             </div>
             <br>
             <div class="">
                 Ainda não tem acesso?
                 <button>
-                    cadastre-se
+                    <a href="#" class="underline">
+                        cadastre-se
+                    </a>
                 </button>
             </div>
         </div>

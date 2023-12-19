@@ -1,5 +1,39 @@
 <?php
 include('config/conexao.php');
+
+
+if (isset($_POST['email']) || isset($_POST['password'])) {
+    if (strlen($_POST['email']) == 0) {
+        echo "Preencha seu e-mail";
+    } else if (strlen($_POST['password']) == 0) {
+        echo "Preencha sua senha";
+    } else {
+        $email = $conn->real_escape_string($_POST['email']);
+        $password = $conn->real_escape_string($_POST['password']);
+        $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$password'";
+        
+        $sql_query = $conn->query($sql_code) or die("Falha na execução do código SQL: " . $conn->connect_errno);
+
+        $quantidade = $sql_query->num_rows;
+
+        if ($quantidade == 1) {
+
+            $usuario = $sql_query->fetch_assoc();
+
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+
+            header('Location: painel.php');
+
+        } else
+            echo "E-mail ou senha incorretos!";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +63,7 @@ include('config/conexao.php');
         border-radius: 6px;
     }
 
-    .fa-solid{
+    .fa-solid {
         color: #0069D9;
     }
 
@@ -44,13 +78,17 @@ include('config/conexao.php');
         width: 120px;
     }
 
+    .forgot-password {
+        text-decoration: underline;
+    }
 </style>
 
 <body class="text-white">
-    <form method="GET" class="d-flex align-items-center justify-content-center w-100 vh-100 bg-[#fff]">
+    <form action="" method="POST" class="d-flex align-items-center justify-content-center w-100 vh-100 bg-[#fff]">
         <div class="form-input">
             <div>
-                <h1 class="text-light d-flex align-items-center justify-content-between">Login <i class="fa-brands fa-napster"></i></h1>
+                <h1 class="text-light d-flex align-items-center justify-content-between">Login <i
+                        class="fa-brands fa-napster"></i></h1>
             </div>
             <br>
             <div>
@@ -58,8 +96,8 @@ include('config/conexao.php');
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
                     </div>
-                    <input type="email" class="form-control" placeholder="exemplo@email.com" aria-label="Username"
-                        aria-describedby="basic-addon1">
+                    <input type="email" name="email" class="form-control" placeholder="exemplo@email.com"
+                        aria-label="Username" aria-describedby="basic-addon1">
                 </div>
                 <br>
 
@@ -68,13 +106,16 @@ include('config/conexao.php');
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="digite sua senha"
+                        <input type="password" name="password" class="form-control" placeholder="digite sua senha"
                             aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                 </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="" class="forgot-password text-light">Esqueceu a senha? Clique aqui</a>
+                </div>
                 <br>
                 <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                         Entrar
                     </button>
                 </div>
@@ -83,8 +124,8 @@ include('config/conexao.php');
 
                 <div class="d-flex justify-content-center align-items-center p-4">
                     Ainda não possui uma conta?
-                    <button  type="button" class="btn btn-light m-2">
-                            cadastre-se
+                    <button type="button" class="btn btn-light m-2">
+                        cadastre-se
                     </button>
                 </div>
             </div>

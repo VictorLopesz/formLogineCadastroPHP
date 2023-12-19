@@ -1,3 +1,7 @@
+<?php
+include('../config/conexao.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,7 +21,7 @@
         width: 80px;
     }
 
-    span{
+    span {
         justify-content: center;
         width: 100%;
         display: flex;
@@ -30,7 +34,8 @@
         Esqueceu a senha? Clique aqui
     </a>
 
-    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog"
+        aria-labelledby="TituloModalCentralizado" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -38,23 +43,24 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                    <span class="text-modal text-dark">
-                        Enviaremos um código para seu e-mail para confirmarmos sua identidade
-                    </span>
-                    <br/>
+
+                <br />
+
                 <div class="modal-body">
+                <form method="POST">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"> Digite seu e-mail
+                            <span class="input-group-text" id="basic-addon1"> <i class="fa-solid fa-envelope"></i>
                             </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Usuário" aria-label="Usuário" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Digite seu e-mail" aria-label="Usuário"
+                                aria-describedby="basic-addon1">
                     </div>
                 </div>
-                <input class="btn btn-primary" type="submit" name="Submit" value="">
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-salvar btn-primary">Salvar</button>
+                    <button type="submit" name="enviar" class="btn btn-salvar btn-primary">Enviar</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

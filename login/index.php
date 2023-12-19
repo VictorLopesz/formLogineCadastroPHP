@@ -38,7 +38,7 @@ include('../config/conexao.php');
     }
 
     .btn {
-        width: 100%;
+        width: 40%;
     }
 
     .forgot-password {
@@ -67,22 +67,24 @@ include('../config/conexao.php');
                         <input type="password" name="password" class="form-control" placeholder="digite sua senha" aria-label="Password" aria-describedby="basic-addon1">
                     </div>
 
-                    <div class="d-flex justify-content-center align-items-center mb-3">
-                            <?php include_once('../trocarSenha/index.php'); ?>
-                    </div>
-
+    
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">
                             Entrar
                         </button>
                     </div>
 
-                    <div class="d-flex justify-content-center align-items-center mt-3">
+                    <br/>
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        <?php include_once('../trocarSenha/index.php'); ?>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center mt-3">
                         <div class="p-2">Ainda não possui uma conta?</div>
                         <button type="button" class="btn btn-light">
                             <a href="../cadastro/index.php">Cadastre-se</a>
                         </button>
-                    </div>
+                    <!-- </div> -->
                 </form>
             </div>
         </div>

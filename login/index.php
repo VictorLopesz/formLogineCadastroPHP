@@ -1,5 +1,5 @@
 <?php
-include('../config/conexao.php');
+include("../config/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,6 @@ include('../config/conexao.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/dist/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -44,19 +43,57 @@ include('../config/conexao.php');
     .forgot-password {
         text-decoration: underline;
     }
+
+    #mensagemSenhaErrada {
+        color: white;
+        width: 100%;
+        padding: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 0, 0, 0.3);
+    }
+
+    #mensagem_cadastrar {
+        width: 100%;
+        padding: 2px;
+        background-color: green;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 <body class="text-white">
+
+
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-md-4">
-                <form action="" method="POST" class="form-input">
+                <form action="login.php" method="POST" class="form-input">
                     <h1 class="text-light text-center mb-4">Login <i class="fa-brands fa-napster"></i></h1>
 
+                    <?php if (isset($_GET["texto"]) && !empty($_GET["texto"])) { ?>
+                        <div id="mensagemSenhaErrada">
+                            <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
+                        </div>
+                    <?php } ?>
+
+                    
+
+                    <?php if (isset($_GET["sucess"]) && !empty($_GET["sucess"])) { ?>
+                        <div id="mensagem_cadastrar">
+                            <?= isset($_GET['sucess']) ? $_GET['sucess'] : "" ?>
+                        </div>
+                    <?php } ?>
+
+                    <br />
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
                         </div>
+
                         <input type="email" name="email" class="form-control" placeholder="exemplo@email.com" aria-label="Email" aria-describedby="basic-addon1">
                     </div>
 
@@ -67,25 +104,26 @@ include('../config/conexao.php');
                         <input type="password" name="password" class="form-control" placeholder="digite sua senha" aria-label="Password" aria-describedby="basic-addon1">
                     </div>
 
-    
+
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">
                             Entrar
                         </button>
                     </div>
-
-                    <br/>
-                    <div class="d-flex justify-content-center align-items-center mb-3">
-                        <?php include_once('../trocarSenha/index.php'); ?>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-center mt-3">
-                        <div class="p-2">Ainda não possui uma conta?</div>
-                        <button type="button" class="btn btn-light">
-                            <a href="../cadastro/index.php">Cadastre-se</a>
-                        </button>
-                    <!-- </div> -->
                 </form>
+
+
+                <br />
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <?php include_once('../trocarSenha/index.php'); ?>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                    <div class="p-2">Ainda não possui uma conta?</div>
+                    <button type="button" class="btn btn-light">
+                        <a href="../cadastro/index.php">Cadastre-se</a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

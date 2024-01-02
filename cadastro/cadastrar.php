@@ -28,8 +28,7 @@ mysqli_stmt_bind_param($stmt, "ssss", $nome, $nascimento, $email, $hash);
 
 // condição para a conclusão do cadastro
 if(mysqli_stmt_execute($stmt)){
-    echo('Usuário cadastrado com sucesso!');
-    header("Location: ../login.php?texto='Cadastrado com sucesso'");
+    header("Location: ../login/index.php?sucess=Cadastrado com sucesso");
 } else {
     echo ("Erro ao cadastrar, verifique se todos os campos estão preenchidos");
 }

@@ -5,7 +5,6 @@ $user = 'root';
 $password = '';
 $db = 'usuarios';
 
-//Está é a ordem correta pra fazer a conexão, e sempre será passada como um objeto
 $conn = new mysqli($hostname, $user, $password, $db); 
 
 if ($conn -> connect_errno){

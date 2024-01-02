@@ -1,5 +1,4 @@
 <?php
-
 include('protect.php');
 ?>
 
@@ -14,7 +13,8 @@ include('protect.php');
 
 <body>
     Seja bem vindo ao painel,
-    <?php echo $_SESSION['nome'] ?>!
+    <?php
+    echo $_SESSION['nome'] ?>!
 
     <p>
         <a href="logout.php">Sair!</a>

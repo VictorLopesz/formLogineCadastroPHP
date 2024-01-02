@@ -18,13 +18,6 @@ include('../config/conexao.php');
         background: #183153;
     }
 
-    #mensagem_cadastrar {
-        width: 100%;
-        padding: 2px;
-        background-color: green;
-        color: white;
-    }
-
     .form-input {
         background-color: rgba(169, 169, 169, 0.5);
         padding: 40px;
@@ -41,13 +34,8 @@ include('../config/conexao.php');
     }
 </style>
 
-<?php if (isset($_GET["texto"]) && !empty($_GET["texto"])) { ?>
-    <div id="mensagem_cadastrar">
-        <?= isset($_GET["texto"]) ? $_GET["texto"] : " " ?>;
-    </div>
-<?php } ?>
-
 <body class="text-white">
+
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center vh-100">
             <div class="col-md-4">

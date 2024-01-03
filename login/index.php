@@ -23,6 +23,7 @@ include("../config/conexao.php");
         background-color: rgba(169, 169, 169, 0.5);
         padding: 40px;
         border-radius: 6px;
+        position: relative;
     }
 
     .fa-solid {
@@ -40,9 +41,7 @@ include("../config/conexao.php");
         width: 40%;
     }
 
-    .forgot-password {
-        text-decoration: underline;
-    }
+
 
     #mensagemSenhaErrada {
         color: white;
@@ -63,7 +62,33 @@ include("../config/conexao.php");
         justify-content: center;
         align-items: center;
     }
-</style>
+
+    form .fa-solid .fa-eye {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+
+    .input-senha {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+    }
+
+    .input-senha input{
+        position: relative;
+        width: 120%;
+    }
+    
+    .input-senha i{
+        position: absolute;
+        margin-right: -260px;
+        color: #c0c0c0;
+        cursor: pointer;
+    }
+    </style>
 
 <body class="text-white">
 
@@ -97,15 +122,17 @@ include("../config/conexao.php");
                         <input type="email" name="email" class="form-control" placeholder="exemplo@email.com" aria-label="Email" aria-describedby="basic-addon1">
                     </div>
 
+
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-key"></i></span>
                         </div>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="digite sua senha" aria-label="Password" aria-describedby="basic-addon1">
-                        <button type="button" id="eyes" name="eyes" onclick="mostrarSenha()"><i class="fa-solid fa-eye"></i></button>
-
+                        <div class="input-senha">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="digite sua senha" aria-label="Password" aria-describedby="basic-addon1">
+                            <i onclick="mostrarSenha()" id="eyeIcon" class="fa-solid fa-eye"></i>
+                        </div>
                     </div>
-
 
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">
@@ -116,9 +143,7 @@ include("../config/conexao.php");
 
 
                 <br />
-                <div class="d-flex justify-content-center align-items-center mb-3">
-                    <?php include_once('../trocarSenha/index.php'); ?>
-                </div>
+
 
                 <div class="d-flex align-items-center justify-content-center mt-3">
                     <div class="p-2">Ainda não possui uma conta?</div>
@@ -137,11 +162,17 @@ include("../config/conexao.php");
     <script>
         function mostrarSenha() {
             var tipo = document.getElementById("password");
-            if (tipo.type == "password") {
+            var eyeIcon = document.getElementById("eyeIcon");
+
+            if (tipo.type === "password") {
                 tipo.type = "text";
-            } else(
-                tipo.type = "password"
-            )
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                tipo.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
         }
     </script>
 </body>
